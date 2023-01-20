@@ -31,8 +31,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
+  carousel_slider: ^4.2.1
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -40,6 +39,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -60,9 +60,24 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/cs1.png
+    - assets/images/cs2.png
+    - assets/images/cs3.png
+    - assets/images/onion.jpg
+    - assets/images/potatoes.jpg
+    - assets/images/tomatoes.jpg
+    - assets/images/white rice.jpg
+    - assets/images/millets.jpg
+    - assets/images/egg1.jpg
+    - assets/images/dryfruits.png
+    - assets/images/tea.png
+    - assets/images/milk.png
+    - assets/images/veggies.png
+    - assets/images/legumes.jpg
+    - assets/images/cotton.png
+    - assets/images/spices.png
+    - assets/images/fruits.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
