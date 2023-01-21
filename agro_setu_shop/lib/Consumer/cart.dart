@@ -5,6 +5,16 @@ class Cart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: [
+        Text(
+          "Add Product",
+          style: TextStyle(
+            fontSize: 18,
+
+          ),
+        ),
+      ],
+    );
   }
 }
