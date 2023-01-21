@@ -1,6 +1,7 @@
 import 'package:agro_setu_shop/Consumer/home.dart';
 import 'package:flutter/material.dart';
-
+import 'login.dart';
+import 'register.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home : Home();
       debugShowCheckedModeBanner: false,
       title: 'Agro Setu Shop',
       theme: ThemeData(
