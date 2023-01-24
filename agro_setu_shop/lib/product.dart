@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class Product {
   final String title, description;
   final List<String> images;
-
   // final List<Color> colors;
   final double rating, price;
   final bool isFavourite, isPopular;
@@ -74,4 +73,45 @@ List<GroupItems> items = [
   GroupItems(img: 'assets/images/legumes.jpg', title: 'Millets & Legumes'),
   GroupItems(img: 'assets/images/tea.png', title: 'Tea & Coffee'),
 
+];
+
+
+// for farmers
+class farmer_Product {
+  final String title;
+  final String images;
+
+  // final List<Color> colors;
+  final double  price;
+  final bool instock;
+
+  farmer_Product({
+    required this.images,
+    required this.title,
+    required this.price,
+    this.instock = true,
+  });
+}
+
+List<farmer_Product> my_Products = [
+  farmer_Product(
+      images: "assets/strawberry.jpg",
+      title: 'Strawberry',
+      price: 200,
+      instock: true),
+  farmer_Product(
+      images: "assets/potato.jpg",
+      title: 'Potatoes',
+      price: 60,
+      instock: true),
+  farmer_Product(
+      images: "assets/onion.jpg",
+      title: 'Onions',
+      price: 43,
+      instock: true),
+  farmer_Product(
+      images: "assets/apples.jpg",
+      title: 'Apples',
+      price: 68,
+      instock: true),
 ];
