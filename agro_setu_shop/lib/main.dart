@@ -1,8 +1,17 @@
-import 'package:agro_setu_shop/Consumer/home.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+import 'Farmer/Farmer_home.dart' as farmer;
+import 'package:agro_setu_shop/Homepage.dart';
 import 'package:flutter/material.dart';
-import 'login.dart';
-import 'register.dart';
-void main() {
+import 'package:agro_setu_shop/login.dart' as login;
+import 'package:agro_setu_shop/register.dart';
+import 'Consumer/home.dart';
+import 'Homepage.dart';
+
+Future<void> main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  //
+  // await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -13,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home : Home();
+      // home : HomeCarousel(),
       debugShowCheckedModeBanner: false,
       title: 'Agro Setu Shop',
       theme: ThemeData(
@@ -34,21 +43,74 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Future<FirebaseApp> _initializeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+    return firebaseApp;
+  }
   @override
   Widget build(BuildContext context) {
+    // return Scaffold(
+    //     appBar: AppBar(
+    //       title: Text('Agro Setu Shop'),
+    //     ),
+    //     body: MainBody());
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Agro Setu Shop'),
-      ),
-      body: Center(
-          child: ElevatedButton(
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
-            },
-            child: Text('Goto Home page'),
-          ),
+      body: FutureBuilder(
+        // stream: Auth().authStateChanges,
+        future: _initializeFirebase(),
+        builder: (context, snapshot) {
+          // return MainBody();
+          if(snapshot.connectionState == ConnectionState.done) {
+            print(snapshot.connectionState);
+            return MainBody();
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
 }
 
+class MainBody extends StatelessWidget {
+  const MainBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+              title: Text('Agro Setu Shop'),
+            ),
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => HomeCarousel()));
+              },
+              child: Text('Goto Home page'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => farmer.Home()));
+              },
+              child: Text('Goto Farmers Home page'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => login.MyStatefulWidget()));
+              },
+              child: Text('Goto Login'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

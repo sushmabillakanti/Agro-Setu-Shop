@@ -7,11 +7,18 @@ class Cart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          "Add Product",
-          style: TextStyle(
-            fontSize: 18,
-
+        Padding(
+          padding: EdgeInsets.all(12.0),
+          child: Center(
+            child: Text(
+              "Add Product",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: Colors.green.shade700,
+              ),
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
       ],

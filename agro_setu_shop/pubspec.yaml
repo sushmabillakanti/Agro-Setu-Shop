@@ -32,9 +32,13 @@ dependencies:
   flutter:
     sdk: flutter
   carousel_slider: ^4.2.1
+  mongo_dart: ^0.8.2
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  firebase_core: ^2.4.1
+  firebase_auth: ^4.2.5
+  cloud_firestore: ^4.3.1
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +82,9 @@ flutter:
     - assets/images/cotton.png
     - assets/images/spices.png
     - assets/images/fruits.png
+    - assets/images/h1.jpeg
+    - assets/images/h2.jpeg
+    - assets/images/h3.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
