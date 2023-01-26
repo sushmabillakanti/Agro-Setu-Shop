@@ -1,6 +1,5 @@
 import 'package:agro_setu_shop/Farmer/productdesc.dart';
 import 'package:flutter/material.dart';
-import 'package:agro_setu_shop/farmer/productdesc.dart';
 
 class Productdetails extends StatelessWidget {
      String dropdownvalue = 'Item 1';   
@@ -89,7 +88,7 @@ class Productdetails extends StatelessWidget {
                 child: MaterialButton(
                   minWidth: double.infinity,
                   height: 60,
-                  onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>Productdesc()));},
+                  onPressed: () => {Navigator.push(context, MaterialPageRoute(builder: (context)=>Productdesc()))},
                   color: Color(0xff0095FF),
                   elevation: 0,
                   shape: RoundedRectangleBorder(

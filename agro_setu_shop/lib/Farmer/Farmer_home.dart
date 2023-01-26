@@ -32,9 +32,9 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   int _currentIndex = 0;
   List<Widget> body = const [
-    Icon(Icons.home),
-    Icon(Icons.category),
-    Icon(Icons.shopping_cart),
+    Icon(Icons.dashboard),
+    Icon(Icons.receipt_long),
+    Icon(Icons.inventory),
     Icon(Icons.account_circle_rounded),
   ];
   List routes = const[
@@ -60,14 +60,14 @@ class _NavbarState extends State<Navbar> {
           });
         },
         items: const [
-          BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
+          BottomNavigationBarItem(label: 'Dashboard', icon: Icon(Icons.dashboard)),
           BottomNavigationBarItem(
-            label: 'Categories',
-            icon: Icon(Icons.category),
+            label: 'Orders',
+            icon: Icon(Icons.receipt_long),
           ),
           BottomNavigationBarItem(
-            label: 'Cart',
-            icon: Icon(Icons.shopping_cart),
+            label: 'Products',
+            icon: Icon(Icons.inventory),
           ),
           BottomNavigationBarItem(
             label: 'Account',

@@ -100,7 +100,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 child: const Text('Register'),
                 onPressed: () {},
               ),
-              color : Colors.green,
+              // color : Colors.green,
             ),
           ],
         ));

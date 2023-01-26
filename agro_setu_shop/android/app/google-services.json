@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "902821309656",
+    "project_id": "agro-setu-shop",
+    "storage_bucket": "agro-setu-shop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902821309656:android:2c8d77c15aded8f80a3bad",
+        "android_client_info": {
+          "package_name": "com.example.agro_setu_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902821309656-c5gnclk5hfluqe80fnu06cgr1bq5cj6r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdrAIXfknR-7dERWTLGxjC60zyyQAFkcM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902821309656-c5gnclk5hfluqe80fnu06cgr1bq5cj6r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
