@@ -1,12 +1,12 @@
-import 'package:agro_setu_shop/sign_up2.dart';
+import 'package:agro_setu_shop/Consumer/sign_up2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'Consumer/home.dart';
-import 'constants.dart';
-import 'form_error.dart';
-import 'helpers.dart';
+import 'package:agro_setu_shop/Consumer/home.dart';
+import '../constants.dart';
+import '../form_error.dart';
+import '../helpers.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({Key? key}) : super(key: key);

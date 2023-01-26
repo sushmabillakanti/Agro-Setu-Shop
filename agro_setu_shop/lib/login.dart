@@ -1,5 +1,5 @@
 import 'package:agro_setu_shop/register.dart';
-import 'package:agro_setu_shop/sign_up.dart';
+import 'package:agro_setu_shop/Consumer/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:agro_setu_shop/Consumer/home.dart' as consumer;

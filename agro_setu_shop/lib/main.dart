@@ -1,9 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
-
 import 'Farmer/Farmer_home.dart' as farmer;
+import 'Farmer/farmer_signup2.dart';
+import 'Farmer/farmer_signup.dart' as farmer2;
 import 'package:agro_setu_shop/Homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:agro_setu_shop/login.dart' as login;
+// import 'Farmer/'
 import 'package:agro_setu_shop/register.dart';
 import 'Consumer/home.dart';
 import 'Homepage.dart';
@@ -95,7 +97,7 @@ class MainBody extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => farmer.Home()));
+                    MaterialPageRoute(builder: (context) => farmer2.SignupScreen2()));
               },
               child: Text('Goto Farmers Home page'),
             ),

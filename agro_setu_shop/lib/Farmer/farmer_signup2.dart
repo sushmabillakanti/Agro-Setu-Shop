@@ -1,15 +1,16 @@
 import 'package:agro_setu_shop/Farmer/Farmer_home.dart';
-import 'package:agro_setu_shop/sign_up.dart';
+import 'package:agro_setu_shop/Consumer/sign_up.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'constants.dart';
-import 'form_error.dart';
-import 'helpers.dart';
+import '../constants.dart';
+import '../form_error.dart';
+import '../helpers.dart';
+import 'farmer_signup.dart';
 
-class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+class SignUp2 extends StatelessWidget {
+  const SignUp2 ({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +18,13 @@ class SignUp extends StatelessWidget {
       appBar: AppBar(
         title: Text('Agro Setu Shop'),
       ),
-      body: Body(),
+      body: Body2(),
     );
   }
 }
 
-class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+class Body2 extends StatelessWidget {
+  const Body2 ({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class Body extends StatelessWidget {
           MoreDetails(),
         ],
       ),
-    );;
+    );
   }
 }
 
@@ -94,7 +95,7 @@ class _MoreDetailsState extends State<MoreDetails> {
       print(e);
     }
 
-    FirebaseFirestore.instance.collection("Consumer").doc(result?.uid).update(
+    FirebaseFirestore.instance.collection("Suppliers").doc(result?.uid).update(
         {
           "UserName": userName.text,
           "UserAddress": address.text,

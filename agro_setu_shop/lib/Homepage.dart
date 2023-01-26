@@ -1,7 +1,7 @@
 import 'package:agro_setu_shop/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'sign_up.dart';
+import 'Consumer/sign_up.dart';
 
 class HomeCarousel extends StatefulWidget {
   const HomeCarousel({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class _H2CarouselState extends State<H2Carousel> {
   Widget build(BuildContext context) {
     return Stack(
       children:[
-       Container(
+       SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: CarouselSlider(
@@ -64,6 +64,30 @@ class _H2CarouselState extends State<H2Carousel> {
               }),
         ),
       ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(100, 50, 50, 50),
+          child: Expanded(
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                  child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Log in')
+                  )
+              )
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(0, 50, 100, 50),
+          child: Expanded(
+              child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Register')
+                  )
+              )
+          ),
+        ),
       ]
     );
   }
