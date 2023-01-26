@@ -1,4 +1,4 @@
-import 'package:agro_setu_shop/helpers.dart';
+import 'package:agro_setu_shop/login.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'Consumer/sign_up.dart';
@@ -70,7 +70,10 @@ class _H2CarouselState extends State<H2Carousel> {
               child: Align(
                 alignment: Alignment.bottomLeft,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => (MyStatefulWidget())));
+                      },
                       child: const Text('Log in')
                   )
               )

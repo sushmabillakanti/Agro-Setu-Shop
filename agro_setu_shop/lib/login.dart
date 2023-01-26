@@ -1,8 +1,8 @@
-import 'package:agro_setu_shop/register.dart';
+import 'package:agro_setu_shop/Consumer/home.dart' as consumer;
 import 'package:agro_setu_shop/Consumer/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:agro_setu_shop/Consumer/home.dart' as consumer;
+import 'package:agro_setu_shop/Farmer/Farmer_home.dart' as farmer;
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -45,6 +45,7 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  String? userType;
 
   static Future<User?> loginUsingEmailPassword(
       {required String email,
@@ -114,6 +115,34 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   ),
                 ),
               ),
+              Container(
+                child: Center(
+                  child: Column(
+                    children: [
+                      RadioListTile(
+                        title: Text("Farmer"),
+                        value: "farmer",
+                        groupValue: userType,
+                        onChanged: (value){
+                          setState(() {
+                            userType = value.toString();
+                          });
+                        },
+                      ),
+                      RadioListTile(
+                        title: Text("Consumer"),
+                        value: "consumer",
+                        groupValue: userType,
+                        onChanged: (value){
+                          setState(() {
+                            userType = value.toString();
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                )
+              ),
               TextButton(
                 onPressed: () {
                   //forgot password screen
@@ -131,12 +160,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       User? user = await loginUsingEmailPassword(email: nameController.text, password: passwordController.text, context: context);
                       print(user);
                       if (user != null) {
-                        Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => consumer.Home()));
+                        if (userType == 'farmer')
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => farmer.Home()));
+                        else
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => consumer.Home()));
                       }
                     },
                   )),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const Text('Does not have account?'),
                   TextButton(
@@ -153,7 +185,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     },
                   )
                 ],
-                mainAxisAlignment: MainAxisAlignment.center,
               ),
             ],
           )),

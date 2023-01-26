@@ -5,10 +5,6 @@ import 'Farmer/farmer_signup.dart' as farmer2;
 import 'package:agro_setu_shop/Homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:agro_setu_shop/login.dart' as login;
-// import 'Farmer/'
-import 'package:agro_setu_shop/register.dart';
-import 'Consumer/home.dart';
-import 'Homepage.dart';
 
 Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -51,11 +47,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //     appBar: AppBar(
-    //       title: Text('Agro Setu Shop'),
-    //     ),
-    //     body: MainBody());
     return Scaffold(
       body: FutureBuilder(
         // stream: Auth().authStateChanges,
@@ -81,38 +72,48 @@ class MainBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-              title: Text('Agro Setu Shop'),
-            ),
-      body: Center(
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => HomeCarousel()));
-              },
-              child: Text('Goto Home page'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => farmer2.SignupScreen2()));
-              },
-              child: Text('Goto Farmers Home page'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => login.MyStatefulWidget()));
-              },
-              child: Text('Goto Login'),
-            ),
-          ],
-        ),
+        // appBar: AppBar(
+        //       title: Text('Agro Setu Shop'),
+        //     ),
+      body: HomeCarousel(),
+    );
+  }
+}
+
+class Signing extends StatelessWidget {
+  const Signing({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomeCarousel()));
+            },
+            child: Text('Goto Home page'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => farmer2.SignupScreen2()));
+            },
+            child: Text('Goto Farmers Home page'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => login.MyStatefulWidget()));
+            },
+            child: Text('Goto Login'),
+          ),
+        ],
       ),
     );
   }
 }
+
