@@ -1,8 +1,10 @@
+import 'package:agro_setu_shop/Farmer/Productdetails.dart';
 import 'package:agro_setu_shop/Farmer/faccount.dart';
 import 'package:agro_setu_shop/Farmer/vproduct.dart';
 import 'package:agro_setu_shop/size_config.dart';
 import 'package:flutter/material.dart';
 
+import 'Profile_body.dart';
 import 'dashboard.dart';
 import 'orders.dart';
 
@@ -37,11 +39,11 @@ class _NavbarState extends State<Navbar> {
     Icon(Icons.inventory),
     Icon(Icons.account_circle_rounded),
   ];
-  List routes = const[
+  List routes = [
     Dashboard(),
     Orders(),
-    Products(),
-    Account()
+    Productdetails(),
+    Profile_body()
   ];
   Widget _route = Dashboard();
 

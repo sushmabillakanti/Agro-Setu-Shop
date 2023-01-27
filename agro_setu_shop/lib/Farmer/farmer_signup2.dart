@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import '../constants.dart';
 import '../form_error.dart';
 import '../helpers.dart';
-import 'farmer_signup.dart';
 
 class SignUp2 extends StatelessWidget {
   const SignUp2 ({Key? key}) : super(key: key);

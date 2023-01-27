@@ -3,6 +3,7 @@ import 'package:agro_setu_shop/Consumer/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:agro_setu_shop/Farmer/Farmer_home.dart' as farmer;
+import 'package:agro_setu_shop/Farmer/farmer_signup.dart' as fsignup;
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -177,10 +178,18 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: () => {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignupScreen()))
+                      if (userType == 'Consumer') {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignupScreen()))
+                      }
+                      else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => fsignup.SignupScreen2()))
+                      }
                       //signup screen
                     },
                   )

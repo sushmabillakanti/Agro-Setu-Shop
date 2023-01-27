@@ -1,14 +1,11 @@
-import 'package:agro_setu_shop/Consumer/sign_up2.dart';
+import 'package:agro_setu_shop/Farmer/farmer_signup2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:agro_setu_shop/Consumer/home.dart';
 import '../helpers.dart';
 import '../constants.dart';
 import '../form_error.dart' show FormError;
-// import '../helpers.dart';
-// import 'farmer_signup2.dart';
 
 class SignupScreen2 extends StatelessWidget {
   const SignupScreen2 ({Key? key}) : super(key: key);
@@ -117,7 +114,7 @@ class _SignUpFormState extends State<SignUpForm> {
     });
 
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (ctx) => SignUp()));
+        .pushReplacement(MaterialPageRoute(builder: (ctx) => SignUp2()));
     setState(() {
       isWorking = false;
     });
@@ -162,7 +159,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     _formKey.currentState!.save();
                   }
                   submit();
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUp()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUp2()));
                 },
               ),
             ],

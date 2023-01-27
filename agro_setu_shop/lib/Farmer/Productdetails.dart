@@ -1,31 +1,75 @@
 // import 'dart:html';
 
-import 'package:agro_setu_shop/Farmer/productdesc.dart';
+import 'dart:io';
+
+import 'package:agro_setu_shop/Farmer/Farmer_home.dart';
+import 'package:agro_setu_shop/Farmer/dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart' as fStorage;
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Productdetails extends StatelessWidget {
-  String dropdownvalue = 'Item 1';
+Map cat = {
+  'veggies': 'Vegetables',
+  'fruits': 'Fruits',
+  'd&n': 'Dry Fruits & Nuts',
+  'spices': 'Spices',
+  'milk': 'Milk & Products',
+  'eggs': 'Eggs',
+  'm&l': 'Millets & Legumes',
+  't&c': 'Tea & Coffee',
+};
+
+List<String> items = [];
+var it = cat.forEach((key, value) {items.add(value);});
+
+class Productdetails extends StatefulWidget {
+  @override
+  State<Productdetails> createState() => _ProductdetailsState();
+}
+
+class _ProductdetailsState extends State<Productdetails> {
+  String dropdownvalue = 'vegetables';
 
   // List of items in our dropdown menu
-  var items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-  ];
 
   final TextEditingController product_name = TextEditingController();
+
   final TextEditingController stock = TextEditingController();
+
   final TextEditingController price = TextEditingController();
+
   final TextEditingController weight = TextEditingController();
+  // final TextEditingController category = TextEditingController();
+
+  String downloadUrlImage = "";
 
   // final List<TextEditingController> _controller = List.generate(4, (index) => TextEditingController());
+  XFile? imgXFile;
+
+  final ImagePicker imagePicker = ImagePicker();
+
+  getImageFromGallery() async {
+    imgXFile = await imagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      imgXFile;
+    });
+  }
 
   void addProduct() async {
+    String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+    fStorage.Reference storeRef = fStorage.FirebaseStorage.instance
+        .ref()
+        .child("FarmerProducts")
+        .child(fileName);
+    fStorage.UploadTask upload = storeRef.putFile(File(imgXFile!.path));
+    fStorage.TaskSnapshot taskSnapshot = await upload.whenComplete(() {});
+    await taskSnapshot.ref.getDownloadURL().then((urlImage) {
+      downloadUrlImage = urlImage;
+    });
+
     User? farmer;
     try {
       farmer = FirebaseAuth.instance.currentUser;
@@ -38,6 +82,8 @@ class Productdetails extends StatelessWidget {
       'product_name': product_name.text,
       'stock': int.parse(stock.text),
       'weight': weight.text,
+      'category': dropdownvalue,
+      'product_image': downloadUrlImage,
     });
   }
 
@@ -48,14 +94,14 @@ class Productdetails extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 40),
           height: MediaQuery.of(context).size.height - 50,
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Column(
-                children: <Widget>[
+                children: const <Widget>[
                   Text(
                     "Add Product",
                     style: TextStyle(
@@ -71,7 +117,7 @@ class Productdetails extends StatelessWidget {
                     label: "Product Name",
                     controller: product_name,
                   ),
-                  InputFile(label: "Stock Quanity", controller: stock),
+                  InputFile(label: "Stock Quantity", controller: stock),
                   InputFile(
                     label: "Price",
                     controller: price,
@@ -79,36 +125,36 @@ class Productdetails extends StatelessWidget {
                   InputFile(label: "weight", controller: weight),
                 ],
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  DropdownButton(
-                    // Initial Value
-                    value: dropdownvalue,
-
-                    // Down Arrow Icon
-                    icon: const Icon(Icons.keyboard_arrow_down),
-
-                    // Array list of items
-                    items: items.map((String items) {
-                      return DropdownMenuItem(
-                        value: items,
-                        child: Text(items),
-                      );
-                    }).toList(),
-                    // After selecting the desired option,it will
-                    // change button value to selected value
-                    onChanged: (String? newValue) {
-                      setState() => {dropdownvalue = newValue!};
-                    },
-                  ),
-                ],
+              DropdownButton(
+                value: dropdownvalue,
+                icon: const Icon(Icons.keyboard_arrow_down),
+                items: items.map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState() => {dropdownvalue = newValue!};
+                },
+              ),
+              MaterialButton(
+                color: Colors.blue,
+                child: const Text(
+                  "Pick Image from Gallery",
+                  style: TextStyle(
+                      color: Colors.white70, fontWeight: FontWeight.bold),
+                ),
+                onPressed: () {
+                  getImageFromGallery();
+                  // _handleURLButtonPress(context, ImageSourceType.gallery);
+                },
               ),
               Container(
-                padding: EdgeInsets.only(top: 3, left: 3),
+                padding: const EdgeInsets.only(top: 3, left: 3),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    border: Border(
+                    border: const Border(
                       bottom: BorderSide(color: Colors.black),
                       top: BorderSide(color: Colors.black),
                       left: BorderSide(color: Colors.black),
@@ -120,14 +166,14 @@ class Productdetails extends StatelessWidget {
                   onPressed: () => {
                     addProduct(),
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Productdesc()))
+                        MaterialPageRoute(builder: (context) => Home()))
                   },
-                  color: Color(0xff0095FF),
+                  color: const Color(0xff0095FF),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  child: Text(
+                  child: const Text(
                     "next",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -161,16 +207,16 @@ class InputFile extends StatelessWidget {
       children: <Widget>[
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         TextField(
           obscureText: false,
           controller: controller,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
@@ -189,42 +235,129 @@ class InputFile extends StatelessWidget {
   }
 }
 
-// we will be creating a widget for text field
-// Widget inputFile({label, obscureText = false} controller)
-// {
-// return Column(
-//   crossAxisAlignment: CrossAxisAlignment.start,
-//   children: <Widget>[
-//     Text(
-//       label,
-//       style: TextStyle(
-//           fontSize: 15,
-//           fontWeight: FontWeight.w400,
-//           color:Colors.black87
-//       ),
-//
-//     ),
-//     SizedBox(
-//       height: 5,
-//     ),
-//     TextField(
-//       obscureText: obscureText,
-//       // controller: _controller[i],
-//       decoration: InputDecoration(
-//           contentPadding: EdgeInsets.symmetric(vertical: 0,
-//               horizontal: 10),
-//           enabledBorder: OutlineInputBorder(
-//             borderSide: BorderSide(
-//                 //color: Colors.grey[400]
-//             ),
-//
-//           ),
-//           border: OutlineInputBorder(
-//               //borderSide: BorderSide(color: Colors.grey[400])
-//           )
-//       ),
-//     ),
-//     SizedBox(height: 10,)
-//   ],
-// );
-// }
+enum ImageSourceType { gallery, camera }
+
+class Productdesc extends StatelessWidget {
+  const Productdesc({Key? key}) : super(key: key);
+
+  void _handleURLButtonPress(BuildContext context, var type) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ImageFromGalleryEx(type)));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Center(
+        child: Column(
+          children: [
+            MaterialButton(
+              color: Colors.blue,
+              child: const Text(
+                "Pick Image from Gallery",
+                style: TextStyle(
+                    color: Colors.white70, fontWeight: FontWeight.bold),
+              ),
+              onPressed: () {
+                // _handleURLButtonPress(context, ImageSourceType.gallery);
+              },
+            ),
+            MaterialButton(
+              color: Colors.blue,
+              child: Text(
+                "Pick Image from Camera",
+                style: TextStyle(
+                    color: Colors.white70, fontWeight: FontWeight.bold),
+              ),
+              onPressed: () {
+                _handleURLButtonPress(context, ImageSourceType.camera);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ImageFromGalleryEx extends StatefulWidget {
+  final type;
+
+  ImageFromGalleryEx(this.type);
+
+  @override
+  ImageFromGalleryExState createState() => ImageFromGalleryExState(this.type);
+}
+
+class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
+  var _image;
+  var imagePicker;
+  var type;
+
+  ImageFromGalleryExState(this.type);
+
+  @override
+  void initState() {
+    // ignore: todo
+    // TODO: implement initState
+    super.initState();
+    imagePicker = new ImagePicker();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Agro Setu Shop'),
+      ),
+      body: Column(
+        children: <Widget>[
+          Text(type == ImageSourceType.camera
+              ? "Image from Camera"
+              : "Image from Gallery"),
+          SizedBox(
+            height: 52,
+          ),
+          Center(
+            child: GestureDetector(
+              onTap: () async {
+                var source = type == ImageSourceType.camera
+                    ? ImageSource.camera
+                    : ImageSource.gallery;
+                XFile image = await imagePicker.pickImage(
+                    source: source,
+                    imageQuality: 50,
+                    preferredCameraDevice: CameraDevice.front);
+                setState(() {
+                  // _image = File(image.path);
+                });
+              },
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(color: Colors.grey.shade400),
+                child: _image != null
+                    ? Image.file(
+                        _image,
+                        width: 200.0,
+                        height: 200.0,
+                        fit: BoxFit.fitHeight,
+                      )
+                    : Container(
+                        decoration: BoxDecoration(color: Colors.grey.shade400),
+                        width: 200,
+                        height: 200,
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

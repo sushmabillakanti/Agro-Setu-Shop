@@ -14,38 +14,37 @@ class Productdesc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Padding(
-      padding: EdgeInsets.only(top: 50),
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
       child: Center(
-        child: Column(
-          children: [
-            MaterialButton(
-              color: Colors.blue,
-              child: Text(
-                "Pick Image from Gallery",
-                style: TextStyle(
-                    color: Colors.white70, fontWeight: FontWeight.bold),
-              ),
-              onPressed: () {
-                _handleURLButtonPress(context, ImageSourceType.gallery);
-              },
-            ),
-            MaterialButton(
-              color: Colors.blue,
-              child: Text(
-                "Pick Image from Camera",
-                style: TextStyle(
-                    color: Colors.white70, fontWeight: FontWeight.bold),
-              ),
-              onPressed: () {
-                _handleURLButtonPress(context, ImageSourceType.camera);
-              },
-            ),
-          ],
+    child: Column(
+      children: [
+        MaterialButton(
+          color: Colors.blue,
+          child: const Text(
+            "Pick Image from Gallery",
+            style: TextStyle(
+                color: Colors.white70, fontWeight: FontWeight.bold),
+          ),
+          onPressed: () {
+            _handleURLButtonPress(context, ImageSourceType.gallery);
+          },
         ),
+        MaterialButton(
+          color: Colors.blue,
+          child: Text(
+            "Pick Image from Camera",
+            style: TextStyle(
+                color: Colors.white70, fontWeight: FontWeight.bold),
+          ),
+          onPressed: () {
+            _handleURLButtonPress(context, ImageSourceType.camera);
+          },
+        ),
+      ],
+    ),
       ),
-    ));
+    );
   }
 }
 
