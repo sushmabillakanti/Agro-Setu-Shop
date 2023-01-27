@@ -39,6 +39,7 @@ dependencies:
   cloud_firestore: ^4.3.1
   firebase_auth: ^4.2.5
   firebase_core: ^2.4.1
+  flutter_svg: ^1.1.6
 
 dev_dependencies:
   flutter_test:
@@ -85,6 +86,9 @@ flutter:
     - assets/images/h1.jpeg
     - assets/images/h2.jpeg
     - assets/images/h3.jpeg
+    - assets/images/camera.png
+    - assets/images/profile.png
+    - assets/icons
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
