@@ -102,7 +102,7 @@ class _MoreDetailsState extends State<MoreDetails> {
         }
     );
 
-    var data = FirebaseFirestore.instance.collection("Products").where('category', isEqualTo: 'veg');
+    // var data = FirebaseFirestore.instance.collection("Products").where('category', isEqualTo: 'veg');
 
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (ctx) => Home()));
