@@ -55,24 +55,24 @@ List<Product> demoProducts = [
 ];
 
 class GroupItems {
-  final String img, title;
+  final String img, title, id;
 
   GroupItems({
     required this.img,
     required this.title,
+    required this.id,
   });
 }
 
 List<GroupItems> items = [
-  GroupItems(img: 'assets/images/veggies.png', title: 'Vegetables'),
-  GroupItems(img: 'assets/images/fruits.png', title: 'Fruits'),
-  GroupItems(img: 'assets/images/dryfruits.png', title: 'Dry Fruits & Nuts'),
-  GroupItems(img: 'assets/images/spices.png', title: 'Spices'),
-  GroupItems(img: 'assets/images/milk.png', title: 'Milk & Products'),
-  GroupItems(img: 'assets/images/egg1.jpg', title: 'Eggs'),
-  GroupItems(img: 'assets/images/legumes.jpg', title: 'Millets & Legumes'),
-  GroupItems(img: 'assets/images/tea.png', title: 'Tea & Coffee'),
-
+  GroupItems(img: 'assets/images/veggies.png', title: 'Vegetables', id: 'veggies'),
+  GroupItems(img: 'assets/images/fruits.png', title: 'Fruits', id: 'fruits'),
+  GroupItems(img: 'assets/images/dryfruits.png', title: 'Dry Fruits & Nuts', id:'d&n'),
+  GroupItems(img: 'assets/images/spices.png', title: 'Spices', id:'spices'),
+  GroupItems(img: 'assets/images/milk.png', title: 'Milk & Products', id:'milk'),
+  GroupItems(img: 'assets/images/egg1.jpg', title: 'Eggs', id:'eggs'),
+  GroupItems(img: 'assets/images/legumes.jpg', title: 'Millets & Legumes', id:'m&l'),
+  GroupItems(img: 'assets/images/tea.png', title: 'Tea & Coffee', id:'t&c'),
 ];
 
 

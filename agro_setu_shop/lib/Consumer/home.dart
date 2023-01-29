@@ -1,9 +1,9 @@
+import 'package:agro_setu_shop/Consumer/cart2.dart';
 import 'package:agro_setu_shop/Consumer/categories.dart';
 import 'package:agro_setu_shop/product.dart';
 import 'package:agro_setu_shop/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
 import 'account.dart';
 import 'cart.dart';
 

@@ -1,5 +1,6 @@
 import 'package:agro_setu_shop/product.dart';
 import 'package:flutter/material.dart';
+import 'cart2.dart';
 
 class Categories extends StatelessWidget {
   const Categories({Key? key}) : super(key: key);
@@ -37,29 +38,34 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 150,
-      child: Column(
-        children: [
-          AspectRatio(
-            aspectRatio: 1.18,
-            child: Container(
-              padding: const EdgeInsets.all(3),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.circular(18),
+      child: InkWell(
+        onTap: (){
+            Navigator.push(context,MaterialPageRoute(builder: (context) => FetchData(id: item.id)));
+        },
+        child: Column(
+          children: [
+            AspectRatio(
+              aspectRatio: 1.18,
+              child: Container(
+                padding: const EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(18),
+                ),
+                child: Image.asset(item.img),
               ),
-              child: Image.asset(item.img),
             ),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            item.title,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
+            const SizedBox(height: 5),
+            Text(
+              item.title,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
