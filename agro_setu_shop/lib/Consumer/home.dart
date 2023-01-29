@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'account.dart';
 import 'cart.dart';
+import 'search.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -15,6 +16,13 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Agro Setu Shop'),
+        actions: [
+          // Navigate to the Search Screen
+          IconButton(
+              onPressed: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) =>  SearchPage())),
+              icon: const Icon(Icons.search))
+        ],
       ),
       body: Container(
         child: Navbar(),
@@ -177,7 +185,7 @@ class Body extends StatelessWidget {
           SizedBox(height: 10),
           SectionTitle(text: 'Eat healthy, Be Healthy', press: (){}),
           Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               top: 0,
               left: 20,
               right: 20,

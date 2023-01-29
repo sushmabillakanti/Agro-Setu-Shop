@@ -1,3 +1,4 @@
+import 'package:agro_setu_shop/Consumer/search.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Farmer/Farmer_home.dart' as farmer;
 import 'Farmer/farmer_signup2.dart';
@@ -5,6 +6,7 @@ import 'Farmer/farmer_signup.dart' as farmer2;
 import 'package:agro_setu_shop/Homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:agro_setu_shop/login.dart' as login;
+import '../Consumer/search.dart';
 
 Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -20,13 +22,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home : HomeCarousel(),
+      // home : CustomSearchDelegate(),
       debugShowCheckedModeBanner: false,
       title: 'Agro Setu Shop',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(),
+       home: MyHomePage(),
     );
   }
 }

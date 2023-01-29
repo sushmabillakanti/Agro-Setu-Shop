@@ -84,7 +84,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   child: const Text(
                     'Welcome!',
                     style: TextStyle(
-                        color: Colors.blue,
+                        color: Colors.green,
                         fontWeight: FontWeight.w500,
                         fontSize: 30),
                   )),

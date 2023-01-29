@@ -40,7 +40,7 @@ class CategoryCard extends StatelessWidget {
       width: 150,
       child: InkWell(
         onTap: (){
-            Navigator.push(context,MaterialPageRoute(builder: (context) => FetchData(id: item.id)));
+          Navigator.push(context,MaterialPageRoute(builder: (context) => FetchData(id: item.id)),);
         },
         child: Column(
           children: [
