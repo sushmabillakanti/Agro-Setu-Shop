@@ -1,5 +1,6 @@
 import 'package:agro_setu_shop/Consumer/search.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'Farmer/Farmer_home.dart' as farmer;
 import 'Farmer/farmer_signup2.dart';
 import 'Farmer/farmer_signup.dart' as farmer2;
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       // home : CustomSearchDelegate(),
       debugShowCheckedModeBanner: false,
       title: 'Agro Setu Shop',

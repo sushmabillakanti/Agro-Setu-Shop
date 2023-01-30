@@ -80,7 +80,6 @@ List<GroupItems> items = [
 class farmer_Product {
   final String title;
   final String images;
-
   // final List<Color> colors;
   final double  price;
   final bool instock;
@@ -115,3 +114,7 @@ List<farmer_Product> my_Products = [
       price: 68,
       instock: true),
 ];
+
+class Display {
+
+}

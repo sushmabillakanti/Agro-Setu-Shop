@@ -1,3 +1,4 @@
+import 'package:agro_setu_shop/Consumer/productList.dart';
 import 'package:agro_setu_shop/product.dart';
 import 'package:flutter/material.dart';
 import 'cart2.dart';
@@ -17,9 +18,13 @@ class Categories extends StatelessWidget {
         children: [
           ...List.generate(
             items.length,
-                (index) => CategoryCard(
-                  item: items[index],
+                (index) => InkWell(
+                  onTap: () => {Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => ProductList()))},
+                  child: CategoryCard(
+                    item: items[index],
             ),
+                ),
           ),
         ],
       ),
@@ -40,7 +45,7 @@ class CategoryCard extends StatelessWidget {
       width: 150,
       child: InkWell(
         onTap: (){
-          Navigator.push(context,MaterialPageRoute(builder: (context) => FetchData(id: item.id)),);
+          Navigator.push(context,MaterialPageRoute(builder: (context) => ProductList()));
         },
         child: Column(
           children: [

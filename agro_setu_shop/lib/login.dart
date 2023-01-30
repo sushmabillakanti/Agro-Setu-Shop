@@ -1,5 +1,6 @@
 import 'package:agro_setu_shop/Consumer/home.dart' as consumer;
 import 'package:agro_setu_shop/Consumer/sign_up.dart';
+import 'package:agro_setu_shop/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:agro_setu_shop/Farmer/Farmer_home.dart' as farmer;
@@ -178,18 +179,19 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: () => {
-                      if (userType == 'Consumer') {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignupScreen()))
-                      }
-                      else {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => fsignup.SignupScreen2()))
-                      }
+                      Register()
+                      // if (userType == 'Consumer') {
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) => SignupScreen()))
+                      // }
+                      // else {
+                      //   Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) => fsignup.SignupScreen2()))
+                      // }
                       //signup screen
                     },
                   )

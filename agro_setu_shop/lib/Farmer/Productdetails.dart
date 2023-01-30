@@ -22,8 +22,10 @@ Map cat = {
   't&c': 'Tea & Coffee',
 };
 
-List<String> items = [];
-var it = cat.forEach((key, value) {items.add(value);});
+List<String> list = [];
+var it = cat.forEach((key, value) {
+  list.add(value);
+});
 
 class Productdetails extends StatefulWidget {
   @override
@@ -42,6 +44,7 @@ class _ProductdetailsState extends State<Productdetails> {
   final TextEditingController price = TextEditingController();
 
   final TextEditingController weight = TextEditingController();
+
   // final TextEditingController category = TextEditingController();
 
   String downloadUrlImage = "";
@@ -84,6 +87,7 @@ class _ProductdetailsState extends State<Productdetails> {
       'weight': weight.text,
       'category': dropdownvalue,
       'product_image': downloadUrlImage,
+      'price': int.parse(price.text)
     });
   }
 
@@ -94,19 +98,19 @@ class _ProductdetailsState extends State<Productdetails> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          height: MediaQuery.of(context).size.height - 50,
-          width: double.infinity,
+          padding: const EdgeInsets.only(left: 30, right: 30),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Column(
-                children: const <Widget>[
-                  Text(
-                    "Add Product",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30, bottom: 20),
+                    child: Text(
+                      "Add Products",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -125,64 +129,71 @@ class _ProductdetailsState extends State<Productdetails> {
                   InputFile(label: "weight", controller: weight),
                 ],
               ),
-              DropdownButton(
-                value: dropdownvalue,
-                icon: const Icon(Icons.keyboard_arrow_down),
-                items: items.map((String items) {
-                  return DropdownMenuItem(
-                    value: items,
-                    child: Text(items),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState() => {dropdownvalue = newValue!};
-                },
-              ),
-              MaterialButton(
-                color: Colors.blue,
-                child: const Text(
-                  "Pick Image from Gallery",
-                  style: TextStyle(
-                      color: Colors.white70, fontWeight: FontWeight.bold),
-                ),
-                onPressed: () {
-                  getImageFromGallery();
-                  // _handleURLButtonPress(context, ImageSourceType.gallery);
-                },
-              ),
-              Container(
-                padding: const EdgeInsets.only(top: 3, left: 3),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: const Border(
-                      bottom: BorderSide(color: Colors.black),
-                      top: BorderSide(color: Colors.black),
-                      left: BorderSide(color: Colors.black),
-                      right: BorderSide(color: Colors.black),
-                    )),
-                child: MaterialButton(
-                  minWidth: double.infinity,
-                  height: 60,
-                  onPressed: () => {
-                    addProduct(),
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()))
-                  },
-                  color: const Color(0xff0095FF),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: SizedBox(
+                  width: double.maxFinite,
+                  child: DropdownButton(
+                    value: dropdownvalue,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    onChanged: (String? value) {
+                      setState(() {
+                        dropdownvalue = value!;
+                      });
+                    },
+                    items: list.map<DropdownMenuItem<String>>((String item) {
+                      print(item);
+                      return DropdownMenuItem(
+                        value: item,
+                        child: Text(item),
+                      );
+                    }).toList(),
                   ),
-                  child: const Text(
-                    "next",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                      color: Colors.white,
+                ),
+              ),
+
+              Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: SizedBox(
+                      width: double.maxFinite,
+                      height: 50,
+                      child: OutlinedButton(
+                          onPressed: () {
+                            getImageFromGallery();
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.upload_rounded,
+                                color: Colors.green,
+                              ),
+                              Text(
+                                "Pick Image from Gallery",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
+                          )),
                     ),
-                  ),
-                ),
-              ),
+                  )),
+              Center(
+                  child: SizedBox(
+                    width: double.maxFinite,
+                    height: 50,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Home();
+                        },
+                        child: Text(
+                          'Add Product',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        )),
+                  ))
             ],
           ),
         ),
@@ -218,11 +229,7 @@ class InputFile extends StatelessWidget {
           controller: controller,
           decoration: const InputDecoration(
               contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                    //color: Colors.grey[400]
-                    ),
-              ),
+
               border: OutlineInputBorder(
                   //borderSide: BorderSide(color: Colors.grey[400])
                   )),

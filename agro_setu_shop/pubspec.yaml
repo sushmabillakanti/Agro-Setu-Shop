@@ -41,6 +41,8 @@ dependencies:
   firebase_core: ^2.4.1
   firebase_storage: ^11.0.10
   flutter_svg: ^1.1.6
+  get: ^4.6.5
+  auto_reload: ^1.1.0
 
 dev_dependencies:
   flutter_test:

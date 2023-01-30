@@ -1,4 +1,5 @@
 import 'package:agro_setu_shop/login.dart';
+import 'package:agro_setu_shop/register.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'Consumer/sign_up.dart';
@@ -85,7 +86,9 @@ class _H2CarouselState extends State<H2Carousel> {
               child: Align(
                   alignment: Alignment.bottomRight,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Register()));
+                      },
                       child: const Text('Register')
                   )
               )
